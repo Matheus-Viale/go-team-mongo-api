@@ -7,11 +7,12 @@ const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 3000;
 mongoose_1.default.connect('mongodb+srv://discordbot:6cK8k44ITR6mmXor@discordbot.gh611mu.mongodb.net/?retryWrites=true&w=majority').catch(console.error);
-app.use(express.json());
-app.use(routes_1.default);
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Origin", "*");
     app.use(cors());
+    app.use(express.json());
+    app.use(routes_1.default);
     next();
 });
 app.listen(port, () => {
